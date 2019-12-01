@@ -13,6 +13,8 @@ const tomorrowMorning = new Date(
 );
 const initialDelay = tomorrowMorning - today;
 
+console.log(`dispatching message in ${initialDelay} ms`);
+
 const format = require("./format");
 const com = require("./com");
 
