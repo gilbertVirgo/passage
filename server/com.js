@@ -20,7 +20,7 @@ const tick = (cb) => {
     const tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
     const msUntilTomorrow = tomorrow - today;
 
-    setTimeout(() => tick, msUntilTomorrow);
+    setTimeout(tick, msUntilTomorrow);
 }
 
 module.exports = {tick, dispatch};
