@@ -22,15 +22,17 @@ const dispatch = async ({body}) => {
     
 }
 
-const tick = (cb) => {
-    cb();
-
+const calculateDelay = () => {
     const today = new Date();
     // 6:00
     const tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1, 6);
-    const msUntilTomorrow = tomorrow - today;
 
-    setTimeout(tick, msUntilTomorrow);
+    return tomorrow - today;
 }
+
+const tick = (cb) => setTimeout(() => {
+    cb();
+    tick(cb);
+}, calculateDelay());
 
 module.exports = {tick, dispatch};

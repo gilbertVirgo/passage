@@ -8,14 +8,12 @@ const app = express();
 const format = require("./format");
 const com = require("./com");
 
-setTimeout(() => {
-    com.tick(async () => {
-        const body = await format.message();
+com.tick(async () => {
+    const body = await format.message();
 
-        if(body !== false) {
-            await com.dispatch({ body });
-        }
-    });
-}, initialDelay);
+    if(body !== false) {
+        await com.dispatch({ body });
+    }
+});
 
 app.listen(PORT, () => console.log(`Service hosted on port ${PORT}`));
