@@ -17,7 +17,8 @@ const tick = (cb) => {
     cb();
 
     const today = new Date();
-    const tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
+    // 6:00
+    const tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1, 6);
     const msUntilTomorrow = tomorrow - today;
 
     setTimeout(tick, msUntilTomorrow);
