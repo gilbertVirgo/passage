@@ -17,9 +17,7 @@ const dispatch = async ({body}) => {
     } catch(error) {
         console.error("There was an error sending the messages.");
         console.error(error);
-    }
-
-    
+    } 
 }
 
 const calculateDelay = () => {

@@ -1,7 +1,7 @@
 const fs = require("fs").promises;
 const path = require("path");
 
-const isWeekday = date => date.getDay() > 0 && date.getDay() < 6;
+const isWeekday = date => (date.getDay() > 0) && (date.getDay() < 6);
 
 const dateIndex = () => {
 	const date = new Date();
@@ -21,7 +21,7 @@ const accountForWeekends = async plan => {
 	let delta = 0,
 		year = 365,
 		dates = [];
-	while (++delta < year) {
+	while (++delta <= year) {
 		let date = new Date(today.getFullYear(), 0, delta);
 		dates.push(date);
 	}
@@ -30,7 +30,7 @@ const accountForWeekends = async plan => {
 	return dates.map((date, index) => {
 		if (!isWeekday(date)) {
 			weekendDays++;
-			return [];
+			return null;
 		} else {
 			return plan[index - weekendDays];
 		}
@@ -44,11 +44,11 @@ const message = async () => {
 
 	const index = dateIndex();
 
-	if (plan[index] !== "") {
-		return `${plan[index]}\n\nhttp://passage.gilbertvirgo.com`;
+	if (plan[index]) {
+		return plan[index];
 	} else {
 		// Weekend
-		return false;
+		return null;
 	}
 };
 
