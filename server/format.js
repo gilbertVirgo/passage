@@ -7,7 +7,7 @@ const dateIndex = () => {
 	const date = new Date();
 	return (
 		(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) -
-			Date.UTC(date.getFullYear(), 0, 0)) /
+			Date.UTC(date.getFullYear(), 0, 1)) /
 		24 /
 		60 /
 		60 /
@@ -18,12 +18,15 @@ const dateIndex = () => {
 const accountForWeekends = async plan => {
 	const today = new Date();
 
-	let delta = 0,
+	let delta = 1,
 		year = 365,
 		dates = [];
-	while (++delta <= year) {
+	while (delta <= year) {
 		let date = new Date(today.getFullYear(), 0, delta);
 		dates.push(date);
+
+		// Just to be clear
+		delta++;
 	}
 
 	let weekendDays = 0;
